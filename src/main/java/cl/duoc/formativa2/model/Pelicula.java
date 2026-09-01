@@ -1,4 +1,4 @@
-package cl.duoc.formativa2;
+package cl.duoc.formativa2.model;
 
 public class Pelicula {
     private int id;

@@ -1,19 +1,20 @@
-package cl.duoc.formativa2;
+package cl.duoc.formativa2.service;
 
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.stereotype.Service;
+import cl.duoc.formativa2.model.Pelicula;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
-public class PeliculaController {
+
+// Lógica del negocio relacionada con las películas, como obtener la lista de películas, buscar por ID, etc.
+
+@Service
+public class PeliculaService {
     
+    // Lista de películas simulada (Lista debería venir de bbdd en formativa 4)
     private List<Pelicula> peliculas = new ArrayList<>();
 
-    public PeliculaController() {
+    public PeliculaService() {
         
         peliculas.add(new Pelicula(1, "Crepúsculo", 2008, "Catherine Hardwicke", "Romance / Fantasía", "Bella se muda a un pueblo y se enamora de un vampiro."));
         peliculas.add(new Pelicula(2, "Hotel Budapest", 2014, "Wes Anderson", "Comedia / Drama", "Aventuras de un conserje de hotel en la Europa de entreguerras."));
@@ -26,21 +27,19 @@ public class PeliculaController {
         peliculas.add(new Pelicula(9, "La Gran Estafa", 2001, "Steven Soderbergh", "Crimen / Suspenso", "Danny Ocean planea el robo más ambicioso de la historia a tres casinos de Las Vegas."));
         peliculas.add(new Pelicula(10, "Hombres de Negro", 1997, "Barry Sonnenfeld", "Ciencia Ficción / Comedia", "Una organización secreta vigila la actividad extraterrestre en la Tierra."));
     }
-    
 
-    @GetMapping("/peliculas")
-    public List<Pelicula> getPeliculas() {
+    // Métodos para acceder a las películas
+    public List<Pelicula> getAllPeliculas() {
         return peliculas;
     }
 
-    @GetMapping("/peliculas/{id}")
-    public Pelicula getPeliculaById(@PathVariable int id) {
-        for (Pelicula pelicula : peliculas) {
-            if (pelicula.getId() == id) {
-                return pelicula;
-            }
-        }
-        return null;
+    // Método para obtener una película por su ID
+    public Pelicula getPeliculaById(int id) {
+        return peliculas.stream()
+                .filter(p -> p.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
+
+
 }
-    
