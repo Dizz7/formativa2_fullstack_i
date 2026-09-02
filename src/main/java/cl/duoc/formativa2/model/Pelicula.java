@@ -1,31 +1,56 @@
 package cl.duoc.formativa2.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+
+
+@Entity
+@Table(name = "pelicula")
 public class Pelicula {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "titulo")
     private String titulo;
-    private int año;
+    @Column(name = "anio")
+    private int anio;
+    @Column(name = "director")
     private String director;
+    @Column(name = "genero")
     private String genero;
+    @Column(name = "sinopsis")
     private String sinopsis;
 
-    public Pelicula (int id, String titulo, int año, String director, String genero, String sinopsis) {
+
+  public Pelicula () {
+    }
+
+
+    public Pelicula (Long id, String titulo, int anio, String director, String genero, String sinopsis) {
         this.id = id;
         this.titulo = titulo;
-        this.año = año;
+        this.anio = anio;
         this.director = director;
         this.genero = genero;
         this.sinopsis = sinopsis;
     }
  
     //Getters y Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getTitulo() { return titulo; }
     public void setTitulo(String titulo) { this.titulo = titulo; }
 
-    public int getAño() { return año; }
-    public void setAño(int año) { this.año = año; }
+    public int getAño() { return anio; }
+    public void setAño(int anio) { this.anio = anio; }
 
     public String getDirector() { return director; }
     public void setDirector(String director) { this.director = director; }
