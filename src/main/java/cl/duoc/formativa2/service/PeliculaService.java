@@ -16,6 +16,10 @@ public interface PeliculaService {
     // Método para obtener una película por su ID
         Optional<Pelicula> getPeliculaById(Long id);
 
+    // Métodos para Crear, Actualizar y Eliminar películas
+        Pelicula createPelicula(Pelicula pelicula);
+        Pelicula updatePelicula(Long id, Pelicula pelicula);
+        void deletePelicula(Long id);
 
 }
 
