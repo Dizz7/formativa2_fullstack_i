@@ -1,5 +1,8 @@
 package cl.duoc.formativa2.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,7 +49,11 @@ public class PeliculaController {
     }
 
     // Controlador para crear, actualizar y eliminar películas
+
+
+
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Pelicula createPelicula(@RequestBody Pelicula pelicula) {
         return peliculaService.createPelicula(pelicula);
     }
